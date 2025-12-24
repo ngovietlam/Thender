@@ -1,0 +1,67 @@
+2025-12-22 20:50:47,820 | ERROR | SUBMIT ERROR | [Errno 13] Permission denied: 'f:\\Admin\\Application\\NhapLieu\\data.xlsx'
+2025-12-22 20:50:53,028 | INFO | SUBMIT SUCCESS | ['2025-12-22', 'NH-20251222-001', 'àaf', 'IN', 12, 13000, 'Cái', 0.08, '=F19*H19', '=F19*E19', '=J19+I19', 122000, '12/12', '124', 'Nguyên Kim', '']
+2025-12-23 09:45:46,787 | INFO | SUBMIT SUCCESS | ['2025-12-22', 'NH-20251222-001', 'á', 'IN', 11, 23, 'Cái', 0.04, '=F19*H19', '=F19*E19', '=J19+I19', 122000, '22', '33', 'Kim Thiên Bảo', '']
+2025-12-23 09:52:12,124 | ERROR | SUBMIT ERROR | [Errno 13] Permission denied: 'f:\\Admin\\Application\\NhapLieu\\data.xlsx'
+2025-12-23 09:52:17,379 | INFO | SUBMIT SUCCESS | ['2025-12-23', 'NH-20251223-001', 'ádas', 'IN', 12, 12, '122', 0.01, '=F20*H20', '=F20*E20', '=J20+I20', 122, '', '', '', '']
+2025-12-23 09:52:45,857 | INFO | SUBMIT SUCCESS | ['2025-12-23', 'NH-20251223-001', 'âs', 'IN', 12, 123, '123', 0.01, '=F3*H3', '=F3*E3', '=J3+I3', 0, '', '', '', '']
+2025-12-23 10:08:10,734 | INFO | UPDATE | NH-20251223-001
+2025-12-23 10:18:26,006 | INFO | UPDATE | CODE=NH-20251223-001
+2025-12-23 10:23:33,866 | INFO | UPDATE | CODE=NH-20251223-001
+2025-12-23 10:23:41,909 | INFO | UPDATE | CODE=NH-20251223-001
+2025-12-23 10:23:54,602 | INFO | UPDATE | CODE=NH-20251223-001
+2025-12-23 10:24:07,418 | INFO | UPDATE | CODE=NH-20251222-001
+2025-12-23 10:27:07,698 | INFO | UPDATE | CODE=NH-20251223-001
+2025-12-23 10:28:28,672 | INFO | INSERT | CODE=NH-20251222-002
+2025-12-23 10:28:39,780 | INFO | UPDATE | CODE=NH-20251222-002
+2025-12-23 10:29:11,975 | INFO | UPDATE | CODE=NH-20251222-002
+2025-12-23 10:35:08,003 | ERROR | invalid literal for int() with base 10: ''
+2025-12-23 10:35:17,802 | ERROR | invalid literal for int() with base 10: ''
+2025-12-23 10:35:25,432 | INFO | INSERT | CODE=NH-20251223-004
+2025-12-23 11:10:05,001 | WARNING | Update code error: 'InventoryApp' object has no attribute 'get_code_prefix'
+2025-12-23 11:10:06,959 | WARNING | Update code error: 'InventoryApp' object has no attribute 'get_code_prefix'
+2025-12-23 11:10:07,842 | WARNING | Update code error: 'InventoryApp' object has no attribute 'get_code_prefix'
+2025-12-23 11:10:08,563 | WARNING | Update code error: 'InventoryApp' object has no attribute 'get_code_prefix'
+2025-12-23 11:10:08,871 | WARNING | Update code error: 'InventoryApp' object has no attribute 'get_code_prefix'
+2025-12-23 11:10:11,149 | WARNING | Update code error: 'InventoryApp' object has no attribute 'get_code_prefix'
+2025-12-23 11:10:11,425 | WARNING | Update code error: 'InventoryApp' object has no attribute 'get_code_prefix'
+2025-12-23 11:10:13,369 | WARNING | Update code error: 'InventoryApp' object has no attribute 'get_code_prefix'
+2025-12-23 11:10:14,469 | WARNING | Update code error: 'InventoryApp' object has no attribute 'get_code_prefix'
+2025-12-23 11:10:25,903 | WARNING | Update code error: 'InventoryApp' object has no attribute 'get_code_prefix'
+2025-12-23 11:10:26,511 | WARNING | Update code error: 'InventoryApp' object has no attribute 'get_code_prefix'
+2025-12-23 11:10:30,421 | WARNING | Update code error: 'InventoryApp' object has no attribute 'get_code_prefix'
+2025-12-23 11:10:30,976 | WARNING | Update code error: 'InventoryApp' object has no attribute 'get_code_prefix'
+2025-12-23 11:10:31,438 | WARNING | Update code error: 'InventoryApp' object has no attribute 'get_code_prefix'
+2025-12-23 11:10:31,961 | WARNING | Update code error: 'InventoryApp' object has no attribute 'get_code_prefix'
+2025-12-23 11:10:32,412 | WARNING | Update code error: 'InventoryApp' object has no attribute 'get_code_prefix'
+2025-12-23 11:10:58,692 | WARNING | Update code error: 'InventoryApp' object has no attribute 'get_code_prefix'
+2025-12-23 11:11:13,904 | ERROR | 'ExcelService' object has no attribute 'load_sheet'
+2025-12-23 11:12:16,888 | WARNING | Update code error: 'InventoryApp' object has no attribute 'get_code_prefix'
+2025-12-23 11:13:27,597 | WARNING | Update code error: 'InventoryApp' object has no attribute 'get_code_prefix'
+2025-12-23 11:13:28,209 | WARNING | Update code error: 'InventoryApp' object has no attribute 'get_code_prefix'
+2025-12-23 11:13:31,050 | ERROR | invalid literal for int() with base 10: ''
+2025-12-23 11:13:37,266 | ERROR | invalid literal for int() with base 10: ''
+2025-12-23 11:13:40,137 | ERROR | invalid literal for int() with base 10: ''
+2025-12-23 11:16:02,653 | WARNING | Update code error: 'InventoryApp' object has no attribute 'get_code_prefix'
+2025-12-23 11:16:13,378 | WARNING | Update code error: 'InventoryApp' object has no attribute 'get_code_prefix'
+2025-12-23 11:16:21,449 | WARNING | Update code error: 'InventoryApp' object has no attribute 'get_code_prefix'
+2025-12-23 11:16:21,898 | WARNING | Update code error: 'InventoryApp' object has no attribute 'get_code_prefix'
+2025-12-23 11:16:22,324 | WARNING | Update code error: 'InventoryApp' object has no attribute 'get_code_prefix'
+2025-12-23 11:16:23,013 | WARNING | Update code error: 'InventoryApp' object has no attribute 'get_code_prefix'
+2025-12-23 11:16:23,568 | WARNING | Update code error: 'InventoryApp' object has no attribute 'get_code_prefix'
+2025-12-23 11:16:23,914 | WARNING | Update code error: 'InventoryApp' object has no attribute 'get_code_prefix'
+2025-12-23 11:16:24,204 | WARNING | Update code error: 'InventoryApp' object has no attribute 'get_code_prefix'
+2025-12-23 11:16:24,483 | WARNING | Update code error: 'InventoryApp' object has no attribute 'get_code_prefix'
+2025-12-23 11:16:24,805 | WARNING | Update code error: 'InventoryApp' object has no attribute 'get_code_prefix'
+2025-12-23 11:16:30,879 | WARNING | Update code error: 'InventoryApp' object has no attribute 'get_code_prefix'
+2025-12-23 11:29:44,317 | WARNING | Update code error: 'InventoryApp' object has no attribute 'get_code_prefix'
+2025-12-23 11:33:39,549 | WARNING | Update code error: 'InventoryApp' object has no attribute 'get_code_prefix'
+2025-12-23 11:33:40,884 | WARNING | Update code error: 'InventoryApp' object has no attribute 'get_code_prefix'
+2025-12-23 11:33:41,402 | WARNING | Update code error: 'InventoryApp' object has no attribute 'get_code_prefix'
+2025-12-23 11:34:28,868 | WARNING | Update code error: 'InventoryApp' object has no attribute 'get_code_prefix'
+2025-12-23 11:34:29,323 | WARNING | Update code error: 'InventoryApp' object has no attribute 'get_code_prefix'
+2025-12-23 13:49:51,889 | WARNING | Update code error: time data '' does not match format '%Y-%m-%d'
+2025-12-23 13:49:54,144 | WARNING | Update code error: time data '' does not match format '%Y-%m-%d'
+2025-12-23 13:49:56,820 | WARNING | Update code error: time data '' does not match format '%Y-%m-%d'
+2025-12-23 13:50:00,487 | ERROR | Vui lòng nhập SỐ LƯỢNG
+2025-12-23 13:50:01,063 | WARNING | Update code error: time data '' does not match format '%Y-%m-%d'
+2025-12-23 13:50:01,543 | WARNING | Update code error: time data '' does not match format '%Y-%m-%d'
