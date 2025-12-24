@@ -71,6 +71,7 @@ class AutocompleteEntry(tk.Entry):
         self.delete(0, tk.END)
         self.insert(0, self.listbox.get(idx))
         self.hide()
+        self.event_generate("<<AutocompleteSelected>>")
 
     def on_click_outside(self, e):
         if self.listbox and not str(e.widget).startswith(str(self.listbox)):
