@@ -11,7 +11,11 @@ class InventoryDataMixin:
             code = ws.cell(r, 2).value
 
             if name and code:
-                results.append(f"{name} | {date} | {code}")
+                if hasattr(date, "strftime"):
+                    date_text = date.strftime("%Y-%m-%d")
+                else:
+                    date_text = str(date) if date is not None else ""
+                results.append(f"{name} | {date_text} | {code}")
 
         return results
 
