@@ -13,11 +13,8 @@ class InventoryLogicMixin:
         # rebuild ô tên hàng
         self.rebuild_name_field()
 
-        # khóa / mở mã
-        if self.mode_var.get() == "OUT":
-            self.e_code.config(state="readonly")
-        else:
-            self.e_code.config(state="normal")
+        # khóa mã: luôn readonly (tự sinh hoặc theo đơn cũ)
+        self.e_code.config(state="readonly")
 
         self.update_code()
         self.root.title("Xuất hàng" if self.mode_var.get() == "OUT" else "Nhập liệu kho")
@@ -51,10 +48,7 @@ class InventoryLogicMixin:
         self.e_date.insert(0, in_date)
 
         # Mã: dùng mã nhập
-        self.e_code.config(state="normal")
-        self.e_code.delete(0, "end")
-        self.e_code.insert(0, in_code)
-        self.e_code.config(state="readonly")
+        self._set_code_value(in_code)
 
     def on_in_name_selected(self, event=None):
         if self.mode_var.get() != "IN":
@@ -111,8 +105,7 @@ class InventoryLogicMixin:
 
         self._set_entry(self.e_date, in_date)
         if code:
-            self.e_code.delete(0, "end")
-            self.e_code.insert(0, str(code))
+            self._set_code_value(str(code))
             self._code_checked = str(code)
             self.editing_row = row
         self._set_entry(self.e_qty, qty_num if qty_num is not None else qty)
@@ -157,8 +150,7 @@ class InventoryLogicMixin:
             next_num = max(nums) + 1 if nums else 1
             new_code = f"{prefix}-{date_key}-{str(next_num).zfill(3)}"
 
-            self.e_code.delete(0, "end")
-            self.e_code.insert(0, new_code)
+            self._set_code_value(new_code)
 
         except Exception as e:
             logging.warning(f"Update code error: {e}")
@@ -185,28 +177,10 @@ class InventoryLogicMixin:
             if not self.e_qty.get().strip():
                 raise ValueError("Vui lòng nhập SỐ LƯỢNG")
 
-            qty = int(self.e_qty.get())
+            qty = int(self.e_qty.get().replace(",", ""))
 
             # ===== XUẤT =====
             if self.mode_var.get() == "OUT":
-                value = self.e_name.get().strip()
-
-                if "|" not in value:
-                    raise ValueError("Vui lòng chọn hàng từ danh sách gợi ý")
-
-                parts = [x.strip() for x in value.split("|")]
-                if len(parts) != 3:
-                    raise ValueError("Dữ liệu hàng hóa không hợp lệ")
-
-                name, date, in_code = parts
-
-                # Tên hàng: chỉ giữ tên
-                self.e_name.delete(0, "end")
-                self.e_name.insert(0, name)
-
-                self.e_code.config(state="normal")
-                self.e_code.config(state="readonly")
-
                 price = int(self.e_price.get().replace(",", "")) if self.e_price.get() else 0
 
             # ===== NHẬP =====
@@ -240,7 +214,7 @@ class InventoryLogicMixin:
                 tax,
                 f"=E{row_idx}*G{row_idx}",
                 f"=E{row_idx}*D{row_idx}",
-                f"=I{row_idx}+H{row_idx}",
+                f"=(E{row_idx}+H{row_idx})*D{row_idx}",
                 fee,
                 self.e_invoice_date.get(),
                 self.e_invoice_no.get(),
@@ -279,6 +253,47 @@ class InventoryLogicMixin:
             entry.insert(0, text)
             return
         entry.insert(0, str(value))
+
+    def _set_code_value(self, value):
+        prev = self.e_code.cget("state")
+        if prev == "readonly":
+            self.e_code.config(state="normal")
+        self.e_code.delete(0, "end")
+        self.e_code.insert(0, str(value))
+        if prev == "readonly":
+            self.e_code.config(state="readonly")
+
+    def load_row(self, ws, row):
+        self._code_checked = None
+        self.editing_row = row
+
+        in_date = ws.cell(row, 1).value
+        code = ws.cell(row, 2).value
+        name = ws.cell(row, 3).value
+        qty = ws.cell(row, 4).value
+        price = ws.cell(row, 5).value
+        unit = ws.cell(row, 6).value
+        tax = ws.cell(row, 7).value
+        fee = ws.cell(row, 11).value
+        invoice_date = ws.cell(row, 12).value
+        invoice_no = ws.cell(row, 13).value
+        partner = ws.cell(row, 14).value
+
+        self._set_entry(self.e_date, in_date)
+        if code:
+            self._set_code_value(str(code))
+            self._code_checked = str(code)
+        if name:
+            self.e_name.delete(0, "end")
+            self.e_name.insert(0, str(name))
+        self._set_entry(self.e_qty, qty)
+        self._set_entry(self.e_price, self._parse_number(price), money=True)
+        self._set_entry(self.e_unit, unit)
+        self._set_entry(self.e_tax, self._tax_to_percent(tax))
+        self._set_entry(self.e_fee, self._parse_number(fee), money=True)
+        self._set_entry(self.e_invoice_date, invoice_date)
+        self._set_entry(self.e_invoice_no, invoice_no)
+        self._set_entry(self.e_partner, partner)
 
     def _tax_to_percent(self, value):
         if value is None or value == "":
@@ -363,6 +378,10 @@ class InventoryLogicMixin:
                 excel = win32com.client.Dispatch("Excel.Application")
 
         excel.DisplayAlerts = False
+        try:
+            excel.Calculation = -4105  # xlCalculationAutomatic
+        except Exception:
+            pass
 
         try:
             if workbook is None:
@@ -381,6 +400,10 @@ class InventoryLogicMixin:
             sheet = workbook.Worksheets(sheet_name)
             for i, value in enumerate(row, 1):
                 sheet.Cells(row_idx, i).Value = value
+            try:
+                excel.CalculateFull()
+            except Exception:
+                pass
             workbook.Save()
             return True
         except Exception:

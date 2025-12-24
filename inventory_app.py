@@ -27,4 +27,5 @@ class InventoryApp(InventoryDataMixin, InventoryLogicMixin, InventoryUiMixin):
 
         # ui
         self.build_ui()
+        self.e_code.config(state="readonly")
         self.update_code()
